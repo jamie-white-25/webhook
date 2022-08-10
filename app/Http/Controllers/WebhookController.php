@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\WebhookRequest;
-use App\Jobs\StoreDownloadData;
+use App\Jobs\StoreWebhookData;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -17,6 +17,8 @@ class WebhookController extends Controller
      */
     public function __invoke(WebhookRequest $request)
     {
-        StoreDownloadData::dispatch($request->validated());
+        StoreWebhookData::dispatch($request->validated());
+
+        return response()->noContent();
     }
 }

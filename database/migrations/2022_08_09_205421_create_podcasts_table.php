@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('podcasts', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->string('name');
             $table->timestamps();
         });
     }

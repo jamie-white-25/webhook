@@ -18,8 +18,7 @@ class PodcastFactory extends Factory
     public function definition()
     {
         return [
-            'id' => (string) Str::uuid(),
-            'name' => fake()->name(),
+            'uuid' => (string) Str::uuid(),
         ];
     }
 }

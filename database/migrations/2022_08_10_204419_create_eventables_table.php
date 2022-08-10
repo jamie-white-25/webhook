@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('eventables', function (Blueprint $table) {
             $table->id();
-            $table->uuid('event_id');
-            $table->string('type');
-            $table->dateTime('occurred_at', $precision = 0);
+            $table->foreignId('event_id');
+            $table->foreignId('eventable_id');
+            $table->string('eventable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('eventables');
     }
 };

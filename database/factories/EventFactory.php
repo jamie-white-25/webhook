@@ -18,9 +18,9 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'type' => 'event.downloaded',
+            'type' => 'episode.downloaded',
             'event_id' => (string) Str::uuid(),
-            'occurred_at' => fake()->dateTime(),
+            'occurred_at' => fake()->dateTimeBetween('-1 week'),
         ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\Episode;
 use App\Models\Event;
+use App\Models\Podcast;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Carbon;
 use Illuminate\Queue\SerializesModels;
@@ -11,9 +13,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 
-class StoreDownloadData implements ShouldQueue
+class StoreWebhookData implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
 
     /**
      * Create a new job instance.
@@ -30,16 +33,20 @@ class StoreDownloadData implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Event $event)
+    public function handle(Event $event, Podcast $podcast, Episode $episode)
     {
-        Event::create(
+        $episode->create(['uuid' => $this->data['episode_id']]);
+        $podcast->create(['uuid' => $this->data['podcast_id']]);
+
+        $event = Event::create(
             [
                 'type' => $this->data['type'],
                 'event_id' => $this->data['event_id'],
                 'occurred_at' => Carbon::parse($this->data['occurred_at'])->setTimezone('UTC')->format('Y-m-d H:i:s'),
-                'episode_uuid' => $this->data['data']['episode_id'],
-                'podcast_uuid' => $this->data['data']['podcast_id']
             ]
         );
+
+        $event->episodes()->attach($episode);
+        $event->podcasts()->attach($podcast);
     }
 }

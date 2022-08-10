@@ -15,4 +15,36 @@ class Event extends Model
      * @var array
      */
     protected $fillable = ['type', 'event_id', 'occurred_at', 'episode_uuid', 'podcast_uuid'];
+
+    /**
+     * Get eventable episodes.
+     */
+    public function episodes()
+    {
+        return $this->morphedByMany(Episode::class, 'eventable');
+    }
+
+    /**
+     *  Get eventable podcasts.
+     */
+    public function podcasts()
+    {
+        return $this->morphedByMany(Podcast::class, 'eventable');
+    }
+
+    // /**
+    //  * Get the podecast for the event.
+    //  */
+    // public function podcasts()
+    // {
+    //     return $this->hasMany(Podcast::class, 'uuid', 'podcast_uuid');
+    // }
+
+    // /**
+    //  * Get the podecast for the event.
+    //  */
+    // public function episodes()
+    // {
+    //     return $this->hasMany(Episode::class, 'uuid', 'episode_uuid');
+    // }
 }

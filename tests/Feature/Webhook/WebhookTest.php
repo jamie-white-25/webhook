@@ -5,6 +5,8 @@ namespace Tests\Feature\Webhook;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Support\Str;
+use App\Jobs\StoreWebhookData;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -19,6 +21,8 @@ class WebhookTest extends TestCase
      */
     public function test_assert_webhook_validation_pass()
     {
+        Queue::fake();
+
         $response = $this->postJson('/webhook', [
             'type' => 'episode.downloaded',
             'event_id' => (string) Str::uuid(),
@@ -27,12 +31,35 @@ class WebhookTest extends TestCase
                 'episode_id' => (string) Str::uuid(),
                 'podcast_id' => (string) Str::uuid(),
             ]
-
-
         ]);
 
         $response->assertValid();
-        $response->assertOk();
+        $response->assertNoContent();
+    }
+
+    /**
+     * Assert Webhook validation pass
+     *
+     * @return void
+     */
+    public function test_assert_webhook_queue_has_been_pushed()
+    {
+        Queue::fake();
+
+        $response = $this->postJson('/webhook', [
+            'type' => 'episode.downloaded',
+            'event_id' => (string) Str::uuid(),
+            'occurred_at' => Carbon::now()->toIso8601String(),
+            'data' => [
+                'episode_id' => (string) Str::uuid(),
+                'podcast_id' => (string) Str::uuid(),
+            ]
+        ]);
+
+        Queue::assertPushed(StoreWebhookData::class);
+
+        $response->assertValid();
+        $response->assertNoContent();
     }
 
     /**
