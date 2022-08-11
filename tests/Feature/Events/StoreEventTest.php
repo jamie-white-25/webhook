@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Events;
 
-use Tests\TestCase;
 use App\Models\Event;
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class StoreEventTest extends TestCase
 {

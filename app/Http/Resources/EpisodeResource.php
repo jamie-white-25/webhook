@@ -16,7 +16,7 @@ class EpisodeResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 }

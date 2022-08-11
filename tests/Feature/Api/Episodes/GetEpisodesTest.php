@@ -4,7 +4,6 @@ namespace Tests\Feature\Api\Episodes;
 
 use App\Models\Episode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class GetEpisodesTest extends TestCase
@@ -25,14 +24,14 @@ class GetEpisodesTest extends TestCase
         $response->assertJsonStructure(
             [
                 'data' => [
-                    "*" => [
+                    '*' => [
                         'name',
-                        'uuid'
-                    ]
-                ]
+                        'uuid',
+                    ],
+                ],
             ]
         );
-        $response->assertJsonCount(10, "data");
+        $response->assertJsonCount(10, 'data');
         $response->assertStatus(200);
     }
 
@@ -50,21 +49,21 @@ class GetEpisodesTest extends TestCase
         $response->assertJsonStructure(
             [
                 'data' => [
-                    "*" => [
+                    '*' => [
                         'name',
-                        'uuid'
-                    ]
-                ]
+                        'uuid',
+                    ],
+                ],
             ]
         );
 
         $response->assertJsonStructure([
             'meta',
             'links',
-            'data'
+            'data',
         ]);
 
-        $response->assertJsonCount(10, "data");
+        $response->assertJsonCount(10, 'data');
         $response->assertStatus(200);
     }
 }

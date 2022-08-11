@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Api\Downloads;
 
-use Tests\TestCase;
-use App\Models\Event;
 use App\Models\Episode;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class EpisodesDownloadTest extends TestCase
 {
@@ -28,7 +27,7 @@ class EpisodesDownloadTest extends TestCase
     }
 
     /**
-     * Assert json structure is correct 
+     * Assert json structure is correct
      *
      * @return void
      */
@@ -44,17 +43,17 @@ class EpisodesDownloadTest extends TestCase
         $this->assertDatabaseCount('events', 100);
         $response->assertOk();
         $response->assertJsonStructure([
-            "data" => [
-                "*" => [
+            'data' => [
+                '*' => [
                     'date',
-                    'count'
-                ]
-            ]
+                    'count',
+                ],
+            ],
         ]);
     }
 
     /**
-     * Assert json is correct 
+     * Assert json is correct
      *
      * @return void
      */
@@ -67,7 +66,7 @@ class EpisodesDownloadTest extends TestCase
         $response = $this->getJson("/api/downloads/episodes/$episode->uuid");
 
         $response->assertOk();
-        $response->assertJsonCount(7, "data");
+        $response->assertJsonCount(7, 'data');
         $response->assertJsonFragment(['date' => now()->toDateString()]);
     }
 }

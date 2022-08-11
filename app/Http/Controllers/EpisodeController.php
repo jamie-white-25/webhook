@@ -8,9 +8,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EpisodeController extends Controller
 {
-
     /**
-     * Index episodes and paginate. 
+     * Index episodes and paginate.
      *
      * @return JsonResource
      */

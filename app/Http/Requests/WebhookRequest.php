@@ -24,29 +24,29 @@ class WebhookRequest extends FormRequest
     public function rules()
     {
         return [
-            "type" => [
+            'type' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
-            "event_id" => [
+            'event_id' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
-            "occurred_at" => [
+            'occurred_at' => [
                 'required',
-                'date'
+                'date',
             ],
-            "data.episode_id" => [
-                'required',
-                'string',
-                'max:255'
-            ],
-            "data.podcast_id" => [
+            'data.episode_id' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
+            ],
+            'data.podcast_id' => [
+                'required',
+                'string',
+                'max:255',
             ],
         ];
     }

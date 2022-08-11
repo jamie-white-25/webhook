@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WebhookRequest;
 use App\Jobs\StoreWebhookData;
-use App\Models\Event;
 use Illuminate\Http\Request;
 
 class WebhookController extends Controller

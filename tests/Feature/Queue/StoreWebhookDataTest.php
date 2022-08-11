@@ -2,13 +2,12 @@
 
 namespace Tests\Feature\Queue;
 
-use Tests\TestCase;
-use Illuminate\Support\Str;
 use App\Jobs\StoreWebhookData;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Queue;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class StoreWebhookDataTest extends TestCase
 {
@@ -23,14 +22,14 @@ class StoreWebhookDataTest extends TestCase
     {
         Queue::fake();
 
-        $data =  [
+        $data = [
             'type' => 'episode.downloaded',
             'event_id' => (string) Str::uuid(),
             'occurred_at' => Carbon::now()->toIso8601String(),
             'data' => [
                 'episode_id' => (string) Str::uuid(),
                 'podcast_id' => (string) Str::uuid(),
-            ]
+            ],
         ];
 
         StoreWebhookData::dispatch($data);

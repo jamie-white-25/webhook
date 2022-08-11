@@ -8,8 +8,6 @@ class EventDownloadService implements EventFormatInterface
 {
     public function format(array $data = []): array
     {
-
-
         return $data;
     }
 }

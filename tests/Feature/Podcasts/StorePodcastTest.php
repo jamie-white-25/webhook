@@ -3,8 +3,6 @@
 namespace Tests\Feature\Podcasts;
 
 use App\Models\Podcast;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class StorePodcastTest extends TestCase

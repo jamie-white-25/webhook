@@ -24,7 +24,6 @@ class Event extends Model
         return $this->morphedByMany(Episode::class, 'eventable');
     }
 
-
     /**
      *  Get eventable podcasts.
      */
@@ -39,7 +38,7 @@ class Event extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilterType($query, string $event = "", string $date = "")
+    public function scopeFilterType($query, string $event = '', string $date = '')
     {
         $query->when($event ?? null, function ($query) {
             $query->where('type', 'episode.downloaded');
