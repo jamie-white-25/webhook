@@ -24,12 +24,38 @@ class Event extends Model
         return $this->morphedByMany(Episode::class, 'eventable');
     }
 
+
     /**
      *  Get eventable podcasts.
      */
     public function podcasts()
     {
         return $this->morphedByMany(Podcast::class, 'eventable');
+    }
+
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilterType($query, string $event = "", string $date = "")
+    {
+        $query->when($event ?? null, function ($query) {
+            $query->where('type', 'episode.downloaded');
+        });
+
+        $query->when($date ?? null, function ($query, $date) {
+            $query->where('occurred_at', '>', $date)
+                ->selectRaw('Date(occurred_at) as occurred_date')
+                ->orderBy('occurred_date', 'desc')
+                ->get()
+                ->map(function ($item) {
+                    return  ['date' => $item->first()->occurred_date, 'count' => $item->count()];
+                });
+        });
+
+        return $query;
     }
 
     // /**

@@ -24,6 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/episodes', EpisodeController::class)->only(['index']);
 
-Route::apiResource('/download/episodes', DownloadEpisodeController::class)
+Route::apiResource('/downloads/episodes', DownloadEpisodeController::class)
     ->scoped(['episode' => 'uuid'])
     ->only(['show']);
