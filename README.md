@@ -1,25 +1,16 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Webhook Test
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+I've completed the test to the best of my ability, but please note I've never used webhooks before. I've not added any authentication for this test, but I would use sanctum to authenticate the API endpoints before deploying to production.  
 
-## About Laravel
+## Setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# sail command 
+./vendor/bin/sail
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+I'm using laravel sail, so you will need docker to run this. To get started run composer install. To run the sail commands you need to run 
+./vendor/bin/sail, so to run artisan you'll need to run ./vendor/bin/sail artisan. Rename the .env.example to .env and set the database password as password and run the sail command up -d this should start the docker containers. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Once the containers have started, generate the the APP_KEY, and then run the sail command artisan sail:install  and install mysql, and once that is done then you can run the sail command and migrate and seed the database. 
 
 ## Learning Laravel
 
