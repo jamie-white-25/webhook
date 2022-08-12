@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Webhook;
 
-use App\Jobs\StoreWebhookData;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
@@ -31,31 +30,6 @@ class WebhookTest extends TestCase
                 'podcast_id' => (string) Str::uuid(),
             ],
         ]);
-
-        $response->assertValid();
-        $response->assertNoContent();
-    }
-
-    /**
-     * Assert Webhook validation pass
-     *
-     * @return void
-     */
-    public function test_assert_webhook_queue_has_been_pushed()
-    {
-        Queue::fake();
-
-        $response = $this->postJson('/webhook', [
-            'type' => 'episode.downloaded',
-            'event_id' => (string) Str::uuid(),
-            'occurred_at' => Carbon::now()->toIso8601String(),
-            'data' => [
-                'episode_id' => (string) Str::uuid(),
-                'podcast_id' => (string) Str::uuid(),
-            ],
-        ]);
-
-        Queue::assertPushed(StoreWebhookData::class);
 
         $response->assertValid();
         $response->assertNoContent();

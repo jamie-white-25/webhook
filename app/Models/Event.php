@@ -14,7 +14,7 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = ['type', 'event_id', 'occurred_at', 'episode_uuid', 'podcast_uuid'];
+    protected $fillable = ['type', 'event_id', 'occurred_at'];
 
     /**
      * Get eventable episodes.

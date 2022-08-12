@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EpisodeResource;
 use App\Http\Resources\EventDownloadResource;
 use App\Models\Episode;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DownloadEpisodeController extends Controller
 {
-
     /**
      * Get episode download date.
      *
-     * @param Episode $episode
+     * @param  Episode  $episode
      * @return JsonResource
      */
     public function show(Episode $episode): JsonResource
@@ -24,11 +22,9 @@ class DownloadEpisodeController extends Controller
         // date to be filtered upto, E.g: last 7 days.
         $endDate = now()->subDays($days - 1);
 
-
         /**
          * Filter event data by type and end date;
-         * FilterType is a local queryScope for reusability 
-         *  
+         * FilterType is a local queryScope for reusability
          */
         $data = $episode->events()
             ->filterType('episode.downloaded', $endDate)
