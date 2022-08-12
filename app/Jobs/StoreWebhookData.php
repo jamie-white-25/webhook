@@ -33,13 +33,15 @@ class StoreWebhookData implements ShouldQueue
      */
     public function handle(Event $event, Podcast $podcast, Episode $episode)
     {
-        $episode->create(['uuid' => $this->data['episode_id']]);
-        $podcast->create(['uuid' => $this->data['podcast_id']]);
+        $episode->findOrCreate(['uuid' => $this->data['episode_id']]);
+        $podcast->findOrCreate(['uuid' => $this->data['podcast_id']]);
 
-        $event = Event::create(
+        $event = Event::findOrCreate(
+            [
+                'event_id' => $this->data['event_id']
+            ],
             [
                 'type' => $this->data['type'],
-                'event_id' => $this->data['event_id'],
                 'occurred_at' => Carbon::parse($this->data['occurred_at'])->setTimezone('UTC')->format('Y-m-d H:i:s'),
             ]
         );
