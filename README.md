@@ -1,6 +1,6 @@
 ## Webhook Test
 
-I've completed the test to the best of my ability, but please note I've never used webhooks before. I've not added any authentication for this test, but I would use sanctum to authenticate the API endpoints before deploying to production.  
+Please note I've never used webhooks before. I've not added any authentication for this test, but I would use sanctum to authenticate the API endpoints before deploying to production.  
 
 ## Setup
 
