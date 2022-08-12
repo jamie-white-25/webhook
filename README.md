@@ -7,49 +7,21 @@ I've completed the test to the best of my ability, but please note I've never us
 - sail command 
 ./vendor/bin/sail
 
-I'm using laravel sail, so you will need docker to run this. To get started run composer install. To run the sail commands you need to run 
+This test is using laravel sail, so you will need docker to run this. To get started run composer install. To run the sail commands you need to run 
 ./vendor/bin/sail, so to run artisan you'll need to run ./vendor/bin/sail artisan. Rename the .env.example to .env and set the database password as password and run the sail command up -d this should start the docker containers. 
 
-Once the containers have started, generate the the APP_KEY, and then run the sail command artisan sail:install  and install mysql, and once that is done then you can run the sail command and migrate and seed the database. 
+Once the containers have started, generate the the APP_KEY, and then run the sail command artisan sail:install and install mySQL, and once that is done then you can run the sail command and migrate and seed the database. 
 
-## Learning Laravel
+## Database structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+I've created 4 migrations files, 1 for the events, podcasts, episodes, and one for the polymorphic relationships. I set the relationships up so podcasts, episodes, can have a many to many relationship with events, and this would make querying events with different types alot easier. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tests
 
-## Laravel Sponsors
+All tests are feature tests and I've created tests as I've been developing TDD principles to catch if any of the functionality were to be broken. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+To run the test run the ./vendor/bin/sail test and this will run the tests. 
 
-### Premium Partners
+All tests are feature tests and I've created tests to catch if any of the funcationity were to be broken. 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+To run the test run the ./vendor/bin/sail test and this will run the tests. 
