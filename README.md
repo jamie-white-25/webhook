@@ -4,7 +4,7 @@ I've completed the test to the best of my ability, but please note I've never us
 
 ## Setup
 
-# sail command 
+- sail command 
 ./vendor/bin/sail
 
 I'm using laravel sail, so you will need docker to run this. To get started run composer install. To run the sail commands you need to run 
